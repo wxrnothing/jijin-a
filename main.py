@@ -244,7 +244,7 @@ try:
     if run_or_not=='run':
         send_wechat_message(title,html)
     else:
-        send_wechat_message('title', 'html')
+        #send_wechat_message('title', 'html')
         print('not today ')
         pass
 except:
