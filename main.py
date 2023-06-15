@@ -1,10 +1,7 @@
 # -*- coding: utf-8 -*-
-#Created on 2022年10月24日
-#@author: One
+
 
 # -*- coding: utf-8 -*-
-#Created on 2021年10月28日
-#@author: One
 
 
 from bs4 import BeautifulSoup
@@ -92,7 +89,7 @@ def get_soup(url):
     HEADERS = {}
     HEADERS['User-Agent'] = random.choice(user_agent_list)
     response = requests.get(url, headers=HEADERS)
-    print('网页的编码:', response.encoding)
+    print('wang ye bian ma :', response.encoding)
     # 选择网页编码,有错误就跳过
     html = response.content.decode(response.encoding, errors='ignore')
     soup = BeautifulSoup(html, 'html.parser')
@@ -131,8 +128,7 @@ def mail(my_sender, my_pass, my_user, title, mail_msg):
         print("邮件发送失败")
 ###############################################################################
 # -*- coding: utf-8 -*-
-# Created on 2022年10月24日
-# @author: One
+
 
 import requests
 import json
@@ -239,7 +235,7 @@ body =   body +""" </tbody>
 </body>
 </html>"""       
 ##################################################################################
-title = '有今日新债券，记得打新哦！'
+title = 'lucky day !'
 html =  body
 
 try:
@@ -249,7 +245,7 @@ try:
         send_wechat_message(title,html)
     else:
         send_wechat_message('title', 'html')
-        print('今天没有发行新债券')
+        print('not today ')
         pass
 except:
     pass     
