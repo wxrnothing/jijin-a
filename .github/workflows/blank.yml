@@ -6,11 +6,8 @@ name: CI-jijin
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   schedule:
-    - cron: "00 13 * * *"
-  push:
-    branches: [ "main" ]
-  pull_request:
-    branches: [ "main" ]
+    - cron: "20 13 * * *"
+
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
