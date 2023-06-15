@@ -40,9 +40,8 @@ jobs:
           pip install requests
           pip install bs4
           dir
-          cd..
-          cd..
-          python main.y 
+
+          python main.py 
       
         
       
