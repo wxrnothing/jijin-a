@@ -158,8 +158,8 @@ for i in jijing_html.find_all('tr'):
         #print(i.find_all('td'))
         run_or_not = 'run'
         j = i.find_all('td')
-        print('j')
-        print(j)
+        #print('j')
+        #print(j)
         
         #for k in j:
             #print(k)
