@@ -92,7 +92,7 @@ def get_soup(url):
     print('wang ye bian ma :', response.encoding)
     # 选择网页编码,有错误就跳过
     html = response.content.decode(response.encoding, errors='ignore')
-    soup = BeautifulSoup(html, 'html.parser',from_encoding='utf-8'))
+    soup = BeautifulSoup(html, 'html.parser',from_encoding='utf-8')
     # print(soup.prettify())
     return soup
 
