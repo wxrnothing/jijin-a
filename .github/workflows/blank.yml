@@ -4,8 +4,9 @@ name: CI-jijin
 
 # Controls when the workflow will run
 on:
-  branches:
-    - master
+  push:
+    branches:
+      - master
 
 
 
