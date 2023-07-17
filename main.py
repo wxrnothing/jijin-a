@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 
 
-# -*- coding: utf-8 -*-
-
 
 from bs4 import BeautifulSoup
 import random
@@ -90,7 +88,7 @@ def get_soup(url):
     HEADERS['User-Agent'] = random.choice(user_agent_list)
     response = requests.get(url, headers=HEADERS)
     print('wang ye bian ma :', response.encoding)
-    # 选择网页编码,有错误就跳过
+    
     html = response.content.decode(response.encoding, errors='ignore')
     soup = BeautifulSoup(html, 'html.parser')
     # print(soup.prettify())
@@ -101,13 +99,13 @@ import smtplib
 from email.mime.text import MIMEText
 from email.utils import formataddr
 
-my_sender = '1247601271@qq.com'  # 发件人邮箱账号
-my_pass = 'tkchnrrvymwtfea??????????????????????'  # 发件人邮箱密码
-my_user = '1247601271@qq.com'  # 收件人邮箱账号，我这边发送给自己
+my_sender = '1247601271@qq.com' 
+my_pass = 'tkchnrrvymwtfea??????????????????????'  
+my_user = '1247601271@qq.com'
 title = 'test'
 mail_msg = """
-<p>Python 邮件发送测试...</p>
-<p><a href="http://www.runoob.com">这是一个链接</a></p>
+<p>Python test</p>
+<p><a href="http://www.runoob.com">link</a></p>
 """
 
 
@@ -146,9 +144,9 @@ def send_wechat_message(title, html):
         ],
         "uids": [
             "UID_NTS5CvFncyPwNABvLEMSMYkDzOeM",
-            'UID_IFoM5Vr6HPHJZbklPkNxgTzJaci9',
-            "UID_cFGOpamEn24oBsyXskKxL687Tyay",
-            "UID_PFtFugYgozuQeiXuZRvh9cCbc6ps",
+            #'UID_IFoM5Vr6HPHJZbklPkNxgTzJaci9',
+            #"UID_cFGOpamEn24oBsyXskKxL687Tyay",
+            #"UID_PFtFugYgozuQeiXuZRvh9cCbc6ps",
         ],
         "url": "https://zhuanlan.zhihu.com/p/470181993",
         "verifyPay": False
