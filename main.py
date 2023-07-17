@@ -146,9 +146,9 @@ def send_wechat_message(title, html):
         ],
         "uids": [
             "UID_NTS5CvFncyPwNABvLEMSMYkDzOeM",
-            #'UID_IFoM5Vr6HPHJZbklPkNxgTzJaci9',
-          #  "UID_cFGOpamEn24oBsyXskKxL687Tyay",
-           # "UID_PFtFugYgozuQeiXuZRvh9cCbc6ps",
+            'UID_IFoM5Vr6HPHJZbklPkNxgTzJaci9',
+          "UID_cFGOpamEn24oBsyXskKxL687Tyay",
+           "UID_PFtFugYgozuQeiXuZRvh9cCbc6ps",
         ],
         "url": "https://zhuanlan.zhihu.com/p/470181993",
         "verifyPay": False
