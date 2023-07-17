@@ -92,11 +92,41 @@ def get_soup(url):
     print('wang ye bian ma :', response.encoding)
     # 选择网页编码,有错误就跳过
     html = response.content.decode(response.encoding, errors='ignore')
-    soup = BeautifulSoup(html, 'html.parser',from_encoding='utf-8')
+    soup = BeautifulSoup(html, 'html.parser')
     # print(soup.prettify())
     return soup
 
+###############################################################################
+import smtplib
+from email.mime.text import MIMEText
+from email.utils import formataddr
 
+my_sender = '1247601271@qq.com'  # 发件人邮箱账号
+my_pass = 'tkchnrrvymwtfea??????????????????????'  # 发件人邮箱密码
+my_user = '1247601271@qq.com'  # 收件人邮箱账号，我这边发送给自己
+title = 'test'
+mail_msg = """
+<p>Python 邮件发送测试...</p>
+<p><a href="http://www.runoob.com">这是一个链接</a></p>
+"""
+
+
+def mail(my_sender, my_pass, my_user, title, mail_msg):
+    ret = True
+    try:
+        msg = MIMEText(mail_msg, 'html', 'utf-8')
+        msg['From'] = formataddr(["FromRunoob", my_sender])  # 括号里的对应发件人邮箱昵称、发件人邮箱账号
+        msg['To'] = formataddr(["FK", my_user])  # 括号里的对应收件人邮箱昵称、收件人邮箱账号
+        msg['Subject'] = title  # 邮件的主题，也可以说是标题
+
+        server = smtplib.SMTP_SSL("smtp.qq.com", 465)  # 发件人邮箱中的SMTP服务器，端口是25
+        server.login(my_sender, my_pass)  # 括号中对应的是发件人邮箱账号、邮箱密码
+        server.sendmail(my_sender, [my_user, ], msg.as_string())  # 括号中对应的是发件人邮箱账号、收件人邮箱账号、发送邮件
+        server.quit()  # 关闭连接
+        print("邮件发送成功")
+    except Exception:  # 如果 try 中的语句没有执行，则会执行下面的 ret=False
+        print("邮件发送失败")
+###############################################################################
 # -*- coding: utf-8 -*-
 
 
@@ -150,7 +180,31 @@ print('html2')
 #print(html.find_all("table",class_="t_content",style=False)[1])
 jijing_html = html.find_all("table",class_="t_content",style=False)[1]
 #print(jijing_html.find_all('tr'))
-body=''' '''
+body='''<!DOCTYPE html>
+<html>
+<head>
+  <title>Bootstrap5 实例</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
+</head>
+
+<body>
+<div class="container mt-3">
+  <h2>Good Luck Today</h2>
+  <p>Good Luck !</p>            
+  <table class="table">
+
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Percent</th>
+        <th>How Many</th>
+      </tr>
+    </thead>
+       
+    <tbody>'''
 run_or_not = 'not'
 for i in jijing_html.find_all('tr'):
     if i.find_all('font',color="red"):
@@ -158,24 +212,28 @@ for i in jijing_html.find_all('tr'):
         #print(i.find_all('td'))
         run_or_not = 'run'
         j = i.find_all('td')
-        #print('j')
+        print('j')
         #print(j)
         
         #for k in j:
             #print(k)
             
-        body = body +"""
+        body = body+"""
                     
                       <tr>
                         <td>%s</td>
                         <td>%s</td>
                         <td>%s</td>
                       </tr>
-                      <br></br>
                      """ %(j[0].text,j[6].text,j[4].text)
                         
 
+body =   body +""" </tbody>
+  </table>
+</div>
 
+</body>
+</html>"""       
 ##################################################################################
 title = 'Lucky Day !'
 html =  body
