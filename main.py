@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 
 
+# -*- coding: utf-8 -*-
+
 
 from bs4 import BeautifulSoup
 import random
@@ -88,43 +90,13 @@ def get_soup(url):
     HEADERS['User-Agent'] = random.choice(user_agent_list)
     response = requests.get(url, headers=HEADERS)
     print('wang ye bian ma :', response.encoding)
-    
+    # 选择网页编码,有错误就跳过
     html = response.content.decode(response.encoding, errors='ignore')
     soup = BeautifulSoup(html, 'html.parser')
     # print(soup.prettify())
     return soup
 
-###############################################################################
-import smtplib
-from email.mime.text import MIMEText
-from email.utils import formataddr
 
-my_sender = '1247601271@qq.com' 
-my_pass = 'tkchnrrvymwtfea??????????????????????'  
-my_user = '1247601271@qq.com'
-title = 'test'
-mail_msg = """
-<p>Python test</p>
-<p><a href="http://www.runoob.com">link</a></p>
-"""
-
-
-def mail(my_sender, my_pass, my_user, title, mail_msg):
-    ret = True
-    try:
-        msg = MIMEText(mail_msg, 'html', 'utf-8')
-        msg['From'] = formataddr(["FromRunoob", my_sender])  # 括号里的对应发件人邮箱昵称、发件人邮箱账号
-        msg['To'] = formataddr(["FK", my_user])  # 括号里的对应收件人邮箱昵称、收件人邮箱账号
-        msg['Subject'] = title  # 邮件的主题，也可以说是标题
-
-        server = smtplib.SMTP_SSL("smtp.qq.com", 465)  # 发件人邮箱中的SMTP服务器，端口是25
-        server.login(my_sender, my_pass)  # 括号中对应的是发件人邮箱账号、邮箱密码
-        server.sendmail(my_sender, [my_user, ], msg.as_string())  # 括号中对应的是发件人邮箱账号、收件人邮箱账号、发送邮件
-        server.quit()  # 关闭连接
-        print("邮件发送成功")
-    except Exception:  # 如果 try 中的语句没有执行，则会执行下面的 ret=False
-        print("邮件发送失败")
-###############################################################################
 # -*- coding: utf-8 -*-
 
 
@@ -145,8 +117,8 @@ def send_wechat_message(title, html):
         "uids": [
             "UID_NTS5CvFncyPwNABvLEMSMYkDzOeM",
             #'UID_IFoM5Vr6HPHJZbklPkNxgTzJaci9',
-            #"UID_cFGOpamEn24oBsyXskKxL687Tyay",
-            #"UID_PFtFugYgozuQeiXuZRvh9cCbc6ps",
+          #  "UID_cFGOpamEn24oBsyXskKxL687Tyay",
+           # "UID_PFtFugYgozuQeiXuZRvh9cCbc6ps",
         ],
         "url": "https://zhuanlan.zhihu.com/p/470181993",
         "verifyPay": False
@@ -178,31 +150,7 @@ print('html2')
 #print(html.find_all("table",class_="t_content",style=False)[1])
 jijing_html = html.find_all("table",class_="t_content",style=False)[1]
 #print(jijing_html.find_all('tr'))
-body='''<!DOCTYPE html>
-<html>
-<head>
-  <title>Bootstrap5 实例</title>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link href="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/css/bootstrap.min.css" rel="stylesheet">
-  <script src="https://cdn.staticfile.org/twitter-bootstrap/5.1.1/js/bootstrap.bundle.min.js"></script>
-</head>
-
-<body>
-<div class="container mt-3">
-  <h2>今日可打新基金提醒</h2>
-  <p>Good Luck !</p>            
-  <table class="table">
-
-    <thead>
-      <tr>
-        <th>基金名称</th>
-        <th>中签率</th>
-        <th>发行金额</th>
-      </tr>
-    </thead>
-       
-    <tbody>'''
+body=''' '''
 run_or_not = 'not'
 for i in jijing_html.find_all('tr'):
     if i.find_all('font',color="red"):
@@ -216,24 +164,20 @@ for i in jijing_html.find_all('tr'):
         #for k in j:
             #print(k)
             
-        body = body+"""
+        body = body +"""
                     
                       <tr>
                         <td>%s</td>
                         <td>%s</td>
                         <td>%s</td>
                       </tr>
+                      <br></br>
                      """ %(j[0].text,j[6].text,j[4].text)
                         
 
-body =   body +""" </tbody>
-  </table>
-</div>
 
-</body>
-</html>"""       
 ##################################################################################
-title = 'lucky day !'
+title = 'Lucky Day !'
 html =  body
 
 try:
@@ -242,7 +186,7 @@ try:
     if run_or_not=='run':
         send_wechat_message(title,html)
     else:
-        #send_wechat_message('title', 'html')
+        send_wechat_message('title', 'html')
         print('not today ')
         pass
 except:
